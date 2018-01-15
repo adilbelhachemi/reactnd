@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ListBook from './ListBook'
 import PropTypes from 'prop-types'
 
+
 class BookShelf extends Component {
 
   static propTypes = {
@@ -10,9 +11,6 @@ class BookShelf extends Component {
     updateBookShelf: PropTypes.func.isRequired,
   }
 
-  handleChange = (book, shelf) => {
-    console.log('event' + book.title + ' ' + shelf)
-  }
 
   render() {
     const { shelf, books, updateBookShelf } = this.props;
@@ -25,9 +23,6 @@ class BookShelf extends Component {
               <ListBook books={books} updateBookShelf={updateBookShelf} />
             </div>
           </div>
-        </div>
-        <div className="open-search">
-          <a>Add a book</a>
         </div>
       </div>
     );
