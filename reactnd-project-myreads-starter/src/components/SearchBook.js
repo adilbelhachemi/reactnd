@@ -17,12 +17,9 @@ class SearchBook extends Component {
         searchedBooks: []
     }
 
-
     searchBook = (event) => {
-
-        const criteria = event.trim()
-
-        if (criteria !== '' || criteria !== undefined) {
+        const criteria = event
+        if (criteria.length !== 0 && criteria !== undefined) {
             this.setState({
                 query: criteria
             })
@@ -33,6 +30,11 @@ class SearchBook extends Component {
                         searchedBooks: books
                     })
                 }
+            })
+        } else {
+            this.setState({
+                searchedBooks: [],
+                query: '',
             })
         }
     }
@@ -54,11 +56,10 @@ class SearchBook extends Component {
                             value={this.state.query}
                             onChange={(event) => this.searchBook(event.target.value)}
                         />
-                        <ListBook books={this.state.searchedBooks} updateBookShelf={updateBookShelf} />
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ListBook books={books} searchedBooks={this.state.searchedBooks}  updateBookShelf={updateBookShelf} />
                 </div>
             </div>
         )

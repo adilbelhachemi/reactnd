@@ -10,22 +10,29 @@ class ShelfChanger extends Component {
         updateBookShelf: PropTypes.func.isRequired,
     }
 
-    setBookshelf(book) {
-        let currentShelf = ''
-        return currentShelf = (book) ? book.shelf : 'none'
+    setBookshelf(books, searchedBooks, book) {
+        
+        let currentShelf = 'none'
+
+        for(let i in books){
+            if(books[i].id === book.id){
+                currentShelf = books[i].shelf
+            }
+        }
+        return currentShelf
     }
 
 
     render() {
 
-        const { book, updateBookShelf } = this.props
+        const { books, searchedBooks, book, updateBookShelf } = this.props
 
         return (
             <div className="book-shelf-changer">
                 <select
                     onChange={(event) => updateBookShelf(book, event.target.value)}
-                    value={this.setBookshelf(book)}>
-                    <option value="none" disabled>Move to</option>
+                    value={this.setBookshelf(books, searchedBooks, book)}>
+                    <option value="moveTo" disabled>Move to</option>
                     <option value="currentlyReading" >Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
