@@ -22,7 +22,6 @@ class ShelfChanger extends Component {
         return currentShelf
     }
 
-
     render() {
 
         const { books, searchedBooks, book, updateBookShelf } = this.props

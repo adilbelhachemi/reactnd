@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 
 class ListBook extends Component {
-
+    
+    //the props searchedBooks is not required
     static propTypes = {
         books: PropTypes.array.isRequired,
         updateBookShelf: PropTypes.func.isRequired,
@@ -28,6 +29,10 @@ class ListBook extends Component {
 
         const { books, searchedBooks, updateBookShelf } = this.props
 
+        /**
+         * the ListBook component is called from more than one component (BookShelf & SearchBook)
+         * the list Book is setted depending on the component who use the ListBook.js
+         */
         let listsBook = (searchedBooks === undefined) ? books : searchedBooks
 
         return (

@@ -19,6 +19,7 @@ class SearchBook extends Component {
 
     searchBook = (event) => {
         const criteria = event
+        
         if (criteria.length !== 0 && criteria !== undefined) {
             this.setState({
                 query: criteria
@@ -32,7 +33,6 @@ class SearchBook extends Component {
                 }
             }).catch((books) => {
                 if (books.error) {
-                    console.log(books)
                     this.clearSearch() 
                 }
             })
