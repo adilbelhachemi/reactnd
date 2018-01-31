@@ -5,7 +5,7 @@ import './App.css'
 import Header from './components/Header'
 import SearchBook from './components/SearchBook'
 import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+
 
 
 class BooksApp extends React.Component {
@@ -53,10 +53,6 @@ class BooksApp extends React.Component {
             <BookShelf shelf='Read' books={readBooks} updateBookShelf={this.updateBookShelf} />
           </div>
         )} />
-
-        <div className="open-search">
-          <Link to="/search">Add a book</Link>
-        </div>
 
         <Route exact path='/search' render={() => (
           <SearchBook books={this.state.books} updateBookShelf={this.updateBookShelf} />

@@ -25,18 +25,27 @@ class SearchBook extends Component {
             })
 
             BooksAPI.search(criteria).then(books => {
-                if (books !== undefined && books.length > 0) {
+                if (books !== undefined && books.length != 0 && books.error === undefined) {
                     this.setState({
                         searchedBooks: books
                     })
                 }
+            }).catch((books) => {
+                if (books.error) {
+                    console.log(books)
+                    this.clearSearch() 
+                }
             })
         } else {
-            this.setState({
-                searchedBooks: [],
-                query: '',
-            })
+            this.clearSearch()
         }
+    }
+
+    clearSearch() {
+        this.setState({
+            query: '',
+            searchedBooks: []
+        })
     }
 
     render() {
@@ -59,7 +68,7 @@ class SearchBook extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ListBook books={books} searchedBooks={this.state.searchedBooks}  updateBookShelf={updateBookShelf} />
+                    <ListBook books={books} searchedBooks={this.state.searchedBooks} updateBookShelf={updateBookShelf} />
                 </div>
             </div>
         )
